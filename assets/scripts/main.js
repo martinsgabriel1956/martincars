@@ -1,7 +1,4 @@
-(function () {
-  'use strict';
-
-  /*
+/*
   Vamos estruturar um pequeno app utilizando módulos.
   Nosso APP vai ser um cadastro de carros. Vamos fazê-lo por partes.
   A primeira etapa vai ser o cadastro de veículos, de deverá funcionar da
@@ -30,47 +27,68 @@
   E aqui nesse arquivo, faça a lógica para cadastrar os carros, em um módulo
   que será nomeado de "app".
   */
-
+function app() {
   let elements = {
-    nameInterprese: document.querySelector('#nameInterprese'),
-    telInterprese: document.querySelector('#telInterprese'),
-    inputs: document.querySelectorAll('input'),
-    submitBtn: document.querySelector('#submitBtn'),
-    carData: document.querySelector('#carData'),
-    form: document.querySelector('form'),
-  }
-
-  function showInfo() {
-    fetch('./company.json').then(res => res.json()).then(data => {
-      elements.nameInterprese.innerHTML = data.name;
-      elements.telInterprese.innerHTML = data.tel;
-    });
-  }
-
-  window.onload = showInfo();
-
-  function registerCar() {
-    const tr = document.createElement("tr");
-    
-    elements.inputs.forEach(input => {
-      const td = document.createElement("td");
-
-      if(!input.value) {
-        alert("Please enter a value");
-        throw new Error('erro');
-      }
-
-      td.innerHTML = input.value
-      input.value = "";
-      tr.appendChild(td);
-    })
-    elements.carData.appendChild(tr);
-  }
-
-  elements.form.addEventListener("submit", e => {
+    nameInterprese: document.querySelector("#nameInterprese"),
+    telInterprese: document.querySelector("#telInterprese"),
+    inputs: document.querySelectorAll("input"),
+    submitBtn: document.querySelector("#submitBtn"),
+    carData: document.querySelector("#carData"),
+    form: document.querySelector("form"),
+  };
+  
+  elements.form.addEventListener("submit", (e) => {
     e.preventDefault();
-    registerCar()
-  })
+    features.registerCar();
+  });
 
-})();
+  const features = {
+    showInfo() {
+      fetch("./company.json")
+        .then((res) => res.json())
+        .then((data) => {
+          elements.nameInterprese.innerHTML = data.name;
+          elements.telInterprese.innerHTML = data.tel;
+        });
+    },
+    registerCar() {
+      const tr = document.createElement("tr");
 
+      elements.inputs.forEach((input) => {
+        const td = document.createElement("td");
+
+        if (!input.value) {
+          alert("Please enter a value");
+          throw new Error("erro");
+        }
+
+        td.innerHTML = input.value;
+        input.value = "";
+        tr.appendChild(td);
+      });
+      tr.appendChild(this.removeCar());
+      elements.carData.appendChild(tr);
+    },
+    removeCar() {
+      const td = document.createElement("td");
+      const removeBtn = document.createElement("button");
+
+      removeBtn.textContent = "remover carro";
+      removeBtn.classList.add("removeBtn");
+      removeBtn.addEventListener("click", features.remove);
+
+      td.appendChild(removeBtn);
+
+      return td;
+    },
+    remove(e) {
+      e.preventDefault();
+      const tr = this.parentNode.parentNode;
+      tr.classList.add("removeClass");
+    },
+  };
+  
+  window.onload = features.showInfo();
+}
+
+app();
