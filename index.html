@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MartinCars</title>
+    <link rel="stylesheet" href="./assets/styles/style.css">
+  </head>
+  <body>
+    <main>
+      <section class="myInfo">
+        <h1 id="nameInterprese"></h1>
+        <h3 id="telInterprese"></h3>
+      </section>
+
+      <form action="">
+        <div class="field">
+          <label for="imgCar">URL da Imagem:</label>
+          <input id="imgCar" placeholder="Digite a Imagem do carro " type="text" />
+        </div>
+        <div class="field">
+          <label for="modelCar">Modelo do carro:</label>
+          <input id="modelCar" placeholder="Digite o modelo" type="text" />
+        </div>
+        <div class="field">
+          <label for="yearCar">Ano:</label>
+          <input id="yearCar" placeholder="Digite o ano" type="text" />
+        </div>
+        <div class="field">
+          <label for="licensePlate">Placa do Carro:</label>
+          <input id="licensePlate" placeholder="Digite ao número da placa" type="text" />
+        </div>
+
+        <div class="field">
+          <label for="colorCar">Cor:</label>
+          <input id="colorCar" placeholder="Digite a cor" type="text" />
+        </div>
+        <button id="submitBtn" type="submit">Cadastrar Carro</button>
+      </form>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Foto</th>
+            <th>Marca/Modelo</th>
+            <th>Cor</th>
+            <th>Ano</th>
+            <th>Placa</th>
+          </tr>
+        </thead>
+        <tbody id="carData"></tbody>
+      </table>
+    </main>
+    <script src="./assets/scripts/main.js"></script>
+  </body>
+</html>
