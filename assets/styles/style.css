@@ -84,6 +84,24 @@ table th {
   font-size: 1.25rem;
 }
 
+.removeClass{
+  display: none;
+}
+
+.removeBtn{
+  background-color: transparent;
+  font-weight: bold;
+  border: none;
+  color: rgb(233, 10, 10);
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.removeBtn:hover {
+  border: 1px solid rgb(233, 10, 10);
+  border-radius: .5rem;
+}
+
 @media (max-width: 768px) {
   main {
     margin: 6rem 0 0;
